@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Api.DTOs;
 using Api.Models;
@@ -44,30 +45,97 @@ namespace Api.Controllers
         }
 
 
-        [HttpGet("Id")]
+
+        [HttpGet("{Id}")]
         public async Task<IActionResult> GetSpeakerById(int Id)
         {
             ObjectResult result;
 
             var speakerFromDatabase = await _context.Speakers.FindAsync(Id);
 
-            if(speakerFromDatabase != null)
+            if (speakerFromDatabase != null)
             {
 
-                
-                result = Ok(new SpeakersDTO{
-                            SpeakerId = speakerFromDatabase.SpeakerId,
-                            SpeakerName = speakerFromDatabase.SpeakerName,
-                            Email = speakerFromDatabase.Email,
-                            Country = speakerFromDatabase.Country,
-                            Phone = speakerFromDatabase.Phone,
-                            Duration = speakerFromDatabase.Duration
-                    });
+
+                result = Ok(new SpeakersDTO {
+                    SpeakerId = speakerFromDatabase.SpeakerId,
+                    SpeakerName = speakerFromDatabase.SpeakerName,
+                    Email = speakerFromDatabase.Email,
+                    Country = speakerFromDatabase.Country,
+                    Phone = speakerFromDatabase.Phone,
+                    Duration = speakerFromDatabase.Duration
+                });
             }
             else
             {
                 result = NotFound("No se encontraron datos");
             }
+            return result;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateSpeaker(SpeakersDTO model)
+        {
+            var newSpeaker = new Speakers
+            {
+                SpeakerId = model.SpeakerId,
+                SpeakerName = model.SpeakerName,
+                Email = model.Email,
+                Country = model.Country,
+                Phone = model.Phone,
+                Duration = model.Duration
+            };
+            _context.Speakers.Add(newSpeaker);
+
+            try
+            {
+
+                await _context.SaveChangesAsync();
+
+            }
+            catch (Exception)
+            {
+                return BadRequest("No se pudo insertar el dato");
+                //throw;
+            }
+            return Ok(new SpeakersDTO
+            {
+                SpeakerId = model.SpeakerId,
+                SpeakerName = model.SpeakerName,
+                Email = model.Email,
+                Country = model.Country,
+                Phone = model.Phone,
+                Duration = model.Duration
+            });
+        }
+
+
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> EliminarSpeakerById(int Id)
+        {
+            ObjectResult result;
+            var speakerFromDatabase = await _context.Speakers.FindAsync(Id);
+            if (speakerFromDatabase != null)
+            {
+                _context.Speakers.Remove(speakerFromDatabase);
+                result = Ok("Se elimino el dato correctamente");
+            }
+            else
+            {
+                result = NotFound("El dato no existe");
+            }
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                result = BadRequest("Error al eliminar");
+                //throw;
+            }
+
+
             return result;
         }
     }
