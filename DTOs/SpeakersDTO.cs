@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Api.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -30,5 +31,6 @@ namespace Api.DTOs
         [MinLength(1,ErrorMessage ="El campo requiere un caracter como minimo")]
         public int Duration { get; set; }
 
+        
     }
 }
