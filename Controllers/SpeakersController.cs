@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class SpeakersController : ControllerBase
     {

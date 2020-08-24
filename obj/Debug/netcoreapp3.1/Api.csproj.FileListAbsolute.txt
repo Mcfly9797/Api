@@ -47,7 +47,6 @@ C:\Users\villarealnah\source\repos\Api\bin\Debug\netcoreapp3.1\runtimes\win-x86\
 C:\Users\villarealnah\source\repos\Api\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\villarealnah\source\repos\Api\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\villarealnah\source\repos\Api\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\villarealnah\source\repos\Api\obj\Debug\netcoreapp3.1\Api.csprojAssemblyReference.cache
 C:\Users\villarealnah\source\repos\Api\obj\Debug\netcoreapp3.1\Api.AssemblyInfoInputs.cache
 C:\Users\villarealnah\source\repos\Api\obj\Debug\netcoreapp3.1\Api.AssemblyInfo.cs
 C:\Users\villarealnah\source\repos\Api\obj\Debug\netcoreapp3.1\Api.csproj.CoreCompileInputs.cache
